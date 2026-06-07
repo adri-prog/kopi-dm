@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIKOM-DM - RSUD Tanjung Pura</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f7f9f8;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            padding-bottom: 25px;
+        }
+
+        /* Green Header Card */
+        .green-banner {
+            background-color: #0d9263;
+            color: #ffffff;
+            padding: 25px 15px;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            margin: 0 10px;
+        }
+
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background-color: #ffd700;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #333;
+            font-weight: bold;
+            border: 2px solid #fff;
+        }
+
+        .hospital-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        /* Main Titles */
+        .main-title {
+            color: #0c8257;
+            font-size: 19px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            padding: 0 15px;
+        }
+
+        .subtitle {
+            color: #0c8257;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .divider {
+            width: 60%;
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 15px auto;
+        }
+
+        .instruction-text {
+            font-size: 13px;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 500;
+            padding: 0 15px;
+        }
+
+        /* Multi-step Navigation Logic */
+        .step {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Cards & Forms Configuration */
+        .question-card, .form-card {
+            border: 1px solid #bcd5cb;
+            border-radius: 10px;
+            margin: 0 15px 15px 15px;
+            padding: 20px 15px;
+            background-color: #ffffff;
+        }
+
+        .question-card {
+            text-align: center;
+        }
+
+        .sikom-logo-text {
+            font-size: 12px;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .sikom-logo-text span {
+            color: #d9383a;
+            font-size: 16px;
+        }
+
+        .question-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #222222;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+
+        .section-title {
+            background-color: #e8f5f1;
+            padding: 6px 10px;
+            border-left: 4px solid #0d9263;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            color: #0c8257;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Buttons Styling */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-yes, .btn-submit {
+            background-color: #0d9263;
+            color: #ffffff;
+            border: none;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(13, 146, 99, 0.2);
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-no {
+            background-color: #ffffff;
+            color: #7a9388;
+            border: 1px solid #cccccc;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* Consult Box & Results Layout */
+        .consult-card {
+            background-color: #e8f5f1;
+            border: 1px solid #cbe6dd;
+            border-radius: 10px;
+            margin: 0 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .consult-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0c8257;
+            margin: 0 0 4px 0;
+        }
+
+        .consult-subtitle {
+            font-size: 12px;
+            color: #555555;
+            margin: 0 0 12px 0;
+        }
+
+        .btn-wa {
+            background-color: #ffffff;
+            color: #0d9263;
+            border: 1px solid #0d9263;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            width: calc(100% - 34px);
+            justify-content: center;
+            margin: 10px 15px 0 15px;
+        }
+
+        .btn-wa-footer {
+            background-color: #25D366;
+            color: white;
+            border: none;
+        }
+
+        .btn-wa-footer:hover {
+            background-color: #128C7E;
+        }
+
+        .wa-icon {
+            width: 12px;
+            height: 12px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .wa-icon-white {
+            background-color: #fff;
+        }
+
+        .result-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .result-box p {
+            margin: 6px 0;
+            font-size: 13px;
+        }
+
+        .saran-text {
+            background-color: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 10px;
+            color: #c53030;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .saran-aman {
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 10px;
+            color: #276749;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .loading {
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            font-size: 13px;
+            padding: 30px 15px;
+        }
+        .logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    }
+    .wa-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    }
+
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    
+    <div class="green-banner">
+        <div class="logo-placeholder"><img src="img/logo.jpg" alt="Logo"></div> 
+        <h1 class="hospital-title">RSUD TANJUNG PURA</h1>
+    </div>
+
+    <div class="main-title">Konsultasi dan Pengobatan Pasien Diabetes Melitus</div>
+    <div class="subtitle">(KOPI-DM)</div>
+    <div class="divider"></div>
+
+    <div id="step-1" class="step active">
+        <div class="instruction-text">Silakan pilih jalur Skrining sesuai kondisi Anda di bawah ini</div>
+        <div class="question-card">
+            <div class="sikom-logo-text"><span>🔴</span> SIKOM-DM</div>
+            <div class="question-text">Apakah Anda sudah pernah didiagnosis diabetes oleh tenaga kesehatan?</div>
+            <div class="btn-group">
+                <button class="btn-yes" onclick="pilihJalur('Sudah DM')">Ya, Saya Sudah Pernah</button>
+                <button class="btn-no" onclick="pilihJalur('Belum DM')">Tidak, Belum Pernah</button>
+            </div>
+        </div>
+        <div class="consult-card">
+            <p class="consult-title">Perlu Konsultasi Langsung?</p>
+            <p class="consult-subtitle">Silakan hubungi dokter melalui WhatsApp:</p>
+            <a href="https://wa.me/6282272187239" target="_blank" style="width:auto; margin:0; display:inline-flex;" class="btn-wa">
+                <span class="wa-icon"><img src="img/wa.png" alt="WA"></span> RSUD TANJUNG PURA
+            </a>
+        </div>
+    </div>
+
+    <div id="step-2" class="step">
+        <div class="instruction-text" id="sub-informasi-pasien">Silakan isi Form Informasi Pasien di bawah ini</div>
+        <div class="form-card">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda">
+            </div>
+            <div class="form-group">
+                <label for="umur">Umur (Tahun)</label>
+                <input type="number" id="umur" placeholder="Contoh: 55">
+            </div>
+            <div class="form-group">
+                <label for="gender">Jenis Kelamin</label>
+                <select id="gender">
+                    <option value="">-- Pilih Jenis Kelamin --</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kecamatan">Kota / Kecamatan</label>
+                <input type="text" id="kecamatan" value="">
+            </div>
+            <div class="form-group">
+                <label for="kabupaten">Kabupaten</label>
+                <input type="text" id="kabupaten" value="">
+            </div>
+            <div class="form-group">
+                <label for="provinsi">Provinsi</label>
+                <input type="text" id="provinsi" value="">
+            </div>
+            <button class="btn-submit" onclick="lanjutKeSkrining()">Lanjutkan Skrining</button>
+        </div>
+    </div>
+
+    <div id="step-skrining-sudah" class="step">
+        <div class="instruction-text">Pilih jawaban "Ya" atau "Tidak" secara jujur berdasarkan gejala klinis Anda</div>
+        <div class="form-card">
+            
+            <div class="section-title">NEUROPATI (Saraf Kaki)</div>
+            <div class="form-group"><label>1.  Apakah Anda merasakan kesemutan di kaki Anda?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>2.  Apakah Anda merasakan di kaki Anda seperti tidak terasa / baal?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>3.  Apakah Anda merasakan sensasi terbakar di kaki Anda?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>4.  Apakah Anda sering merasakan nyeri seperti ditusuk-tusuk jarum di kaki?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>5.  Apakah Anda mengalami nyeri saat selimut atau kain pakaian menyentuh kaki Anda?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>6.  Apakah Anda merasa tidak bisa membedakan suhu panas atau dingin di kaki Anda?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>7.  Apakah Anda mengalami luka di kaki yang tidak berasa sakit?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>8.  Apakah Anda mengalami gangguan tidur akibat nyeri atau sensasi tidak nyaman di kaki?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>9.  Apakah Anda mengalami perubahan warna atau kulit kering pada kaki?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>10. Apakah Anda sering mengalami kram di kaki pada malam hari?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>11. Apakah Anda merasa kaki anda serasa lebih lemah dibandingkan biasanya?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>13. Apakah Anda sering merasa kaki anda dingin meskipun suhu ruangan normal?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>14. Apakah Anda sering tidak merasa jika kaki anda terluka atau terbakar oleh benda panas?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+
+            <div class="section-title">NEFROPATI (Ginjal)</div>
+            <div class="form-group"><label>1. Apakah Anda mengalami bengkak pada bagian kaki, tangan, atau wajah?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>2. Apakah Anda sering merasa cepat lelah atau lemas secara terus menerus?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>3. Apakah anda pernah diperiksa protein/albumin di urin dengan hasil positif?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>4. Apakah memiliki kreatinin darah tinggi ( 1,2 mg/dL )?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+
+            <div class="section-title">RETINOPATI (Mata)</div>
+            <div class="form-group"><label>1. Apakah anda mengalami penglihatan kabur yang makin memburuk?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>2. Apakah Anda melihat bintik hitam (floater) pada penglihatan?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>3. Apakah Anda sering sulit melihat di malam hari?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>4. Apakah Anda pernah didiagnosis retinopatik diabetik sebelumnya?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+
+            <div class="section-title">KARDIOVASKULAR (Jantung)</div>
+            <div class="form-group"><label>1. Apakah Anda merasakan nyeri, sesak, atau tertekan di dada?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>2. Apakah Anda mengalami napas pendek atau sesak napas saat melakukan aktivitas ringan?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>3. Apakah Anda pernah didiagnosa menderita hipertensi (tekanan darah tinggi) atau kolestrol tinggi?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+            <div class="form-group"><label>4. Apakah Anda pernah mengalami bengkak pada kaki (terasa cepat lelah)?</label><select class="skor-sudah"><option value="0">Tidak</option><option value="1">Ya</option></select></div>
+
+            <button class="btn-submit" onclick="prosesAkhirSudah()">Kirim & Lihat Hasil</button>
+        </div>
+    </div>
+
+    <div id="step-skrining-belum" class="step">
+        <div class="instruction-text">Silakan jawab pertanyaan di bawah ini untuk mendeteksi faktor risiko dasar Anda</div>
+        <div class="form-card">
+            <div class="form-group">
+                <label>1. Apakah Anda memiliki orang tua atau saudara kandung yang menderita diabetes?</label>
+                <select class="skor-belum"><option value="0">Tidak</option><option value="1">Ya</option></select>
+            </div>
+            <div class="form-group">
+                <label>2. Tekanan darah tinggi atau minum obat hipertensi?</label>
+                <select class="skor-belum"><option value="0">Tidak</option><option value="1">Ya</option></select>
+            </div>
+            <div class="form-group">
+                <label>3. Aktivitas rutin (30 menit/har 5x/minggu)?</label>
+                <select class="skor-belum"><option value="0">Tidak</option><option value="1">Ya</option></select>
+            </div>
+            <div class="form-group">
+                <label>4. Berat badan berlebih?</label>
+                <select class="skor-belum"><option value="0">Tidak</option><option value="1">Ya</option></select>
+            </div>
+            <div class="form-group">
+                <label for="kecamatan">Tinggi Badan</label>
+                <input type="text" id="tb" value="">
+            </div>
+            <div class="form-group">
+                <label for="kecamatan">Berat Badan</label>
+                <input type="text" id="bb" value="">
+            </div>
+            <button class="btn-submit" onclick="prosesAkhirBelum()">Kirim & Lihat Hasil</button>
+        </div>
+    </div>
+
+    <div id="step-loading" class="step">
+        <div class="loading">
+            <p>Memproses data medis SIKOM-DM...</p>
+            <p>Sedang menyimpan data ke database server, mohon tunggu sebentar.</p>
+        </div>
+    </div>
+
+    <div id="step-hasil" class="step">
+        <div class="instruction-text">Rangkuman Pemeriksaan Skrining Mandiri Anda</div>
+        <div class="form-card">
+            <div class="result-box">
+                <p><strong>Nama:</strong> <span id="res-nama"></span></p>
+                <p><strong>Umur / Gender:</strong> <span id="res-umur"></span> Tahun / <span id="res-gender"></span></p>
+                <p><strong>Wilayah Pasien:</strong> <span id="res-alamat"></span></p>
+                <p><strong>Total Skor 'Ya':</strong> <span id="res-skor"></span> Poin</p>
+                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
+                <p><strong>Kesimpulan Tindak Lanjut Medis:</strong></p>
+                <div id="res-saran-box"></div>
+            </div>
+        </div>
+        
+        <button class="btn-wa btn-wa-footer" onclick="kirimWhatsApp()">
+            <span class="wa-icon wa-icon-white"></span> Konsultasi Hasil via WhatsApp
+        </button>
+        <button class="btn-no" onclick="resetForm()" style="width: calc(100% - 30px); margin: 10px 15px 0 15px; display: block; text-align: center;">Kembali ke Menu Utama</button>
+    </div>
+
+</div>
+
+<script>
+    // MASUKKAN URL API GOOGLE APP SCRIPT ANDA DI SINI
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrSZnYCKHZsjZUKNke-Q68jdtSzqGz4w0fd2Mwl4IIiBaOYR_urMvYrW_xzsGa-2WWAQ/exec";
+
+    let statusDM = "";
+    let totalSkor = 0;
+    let kesimpulanSaran = "";
+
+    function pilihJalur(jalur) {
+        statusDM = jalur;
+        pindahHalaman("step-1", "step-2");
+    }
+
+    function lanjutKeSkrining() {
+        const nama = document.getElementById("nama").value.trim();
+        const umur = document.getElementById("umur").value.trim();
+        const gender = document.getElementById("gender").value;
+
+        if(!nama || !umur || !gender) {
+            alert("Mohon lengkapi Data Informasi Pasien Anda terlebih dahulu.");
+            return;
+        }
+
+        if(statusDM === "Sudah DM") {
+            pindahHalaman("step-2", "step-skrining-sudah");
+        } else {
+            pindahHalaman("step-2", "step-skrining-belum");
+        }
+    }
+
+    function prosesAkhirSudah() {
+        let inputs = document.querySelectorAll(".skor-sudah");
+        totalSkor = 0;
+        inputs.forEach(input => totalSkor += parseInt(input.value));
+
+        if(totalSkor > 0) {
+            kesimpulanSaran = "Ada indikasi komplikasi diabetes. Segera konsultasi ke Dokter Spesialis Penyakit Dalam untuk pemeriksaan lebih lanjut.";
+        } else {
+            kesimpulanSaran = "Tidak ada indikasi komplikasi klinis utama saat ini. Lanjutkan kontrol rutin berkala di Pelayanan Poliklinik/Rawat Jalan.";
+        }
+        kirimKeDatabase("step-skrining-sudah");
+    }
+
+    function prosesAkhirBelum() {
+        let inputs = document.querySelectorAll(".skor-belum");
+        totalSkor = 0;
+        inputs.forEach(input => totalSkor += parseInt(input.value));
+
+        if(totalSkor >= 2) {
+            kesimpulanSaran = "Risiko Tinggi. Dianjurkan konsultasi langsung dan pemeriksaan laboratorium dari Pelayanan Poliklinik/Rawat Jalan Spesialis Penyakit Dalam RSUD Tanjung Pura.";
+        } else {
+            kesimpulanSaran = "Risiko Rendah. Pertahankan gaya hidup sehat, konsumsi makanan berserat, dan lakukan pemeriksaan skrining berkala.";
+        }
+        kirimKeDatabase("step-skrining-belum");
+    }
+
+    function kirimKeDatabase(stepLama) {
+        pindahHalaman(stepLama, "step-loading");
+
+        const payload = {
+            statusDM: statusDM,
+            nama: document.getElementById("nama").value,
+            umur: document.getElementById("umur").value,
+            gender: document.getElementById("gender").value,
+            alamat: document.getElementById("kecamatan").value + ", " + document.getElementById("kabupaten").value + ", " + document.getElementById("provinsi").value,
+            totalSkor: totalSkor,
+            saran: kesimpulanSaran
+        };
+
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            tampilkanHasil();
+        })
+        .catch(err => {
+            console.error("Koneksi Database Terkendala:", err);
+            tampilkanHasil(); 
+        });
+    }
+
+    function tampilkanHasil() {
+        document.getElementById("res-nama").innerText = document.getElementById("nama").value;
+        document.getElementById("res-umur").innerText = document.getElementById("umur").value;
+        document.getElementById("res-gender").innerText = document.getElementById("gender").value;
+        document.getElementById("res-alamat").innerText = document.getElementById("kecamatan").value + ", " + document.getElementById("kabupaten").value;
+        document.getElementById("res-skor").innerText = totalSkor;
+
+        const saranBox = document.getElementById("res-saran-box");
+        if((totalSkor > 0 && statusDM === "Sudah DM") || (totalSkor >= 2 && statusDM === "Belum DM")) {
+            saranBox.className = "saran-text";
+        } else {
+            saranBox.className = "saran-aman";
+        }
+        saranBox.innerText = kesimpulanSaran;
+
+        pindahHalaman("step-loading", "step-hasil");
+    }
+
+    function kirimWhatsApp() {
+        const nama = document.getElementById("nama").value;
+        const umur = document.getElementById("umur").value;
+        const gender = document.getElementById("gender").value;
+        const kec = document.getElementById("kecamatan").value;
+        const kab = document.getElementById("kabupaten").value;
+
+        let message = `Halo Admin RSUD Tanjung Pura,\nSaya telah melakukan skrining mandiri KOPI-DM.\n\n`;
+        message += `*Data Pemeriksaan Pasien:*\n`;
+        message += `- Nama: ${nama}\n`;
+        message += `- Jalur: Pasien ${statusDM}\n`;
+        message += `- Umur / Gender: ${umur} Tahun / ${gender}\n`;
+        message += `- Wilayah: ${kec}, ${kab}\n`;
+        message += `- Total Jawaban 'Ya': ${totalSkor} Poin\n\n`;
+        message += `*Rekomendasi Medis:*\n"${kesimpulanSaran}"\n\n`;
+        message += `Mohon informasi terkait pendaftaran layanan pemeriksaan lebih lanjut. Terima kasih.`;
+
+        const phone = "6282272187239"; // Masukkan nomor tujuan administrasi/pendaftaran RS Anda
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function pindahHalaman(dari, ke) {
+        document.getElementById(dari).classList.remove("active");
+        document.getElementById(ke).classList.add("active");
+    }
+
+    function resetForm() {
+        document.getElementById("nama").value = "";
+        document.getElementById("umur").value = "";
+        pindahHalaman("step-hasil", "step-1");
+    }
+</script>
+
+</body>
+</html>
