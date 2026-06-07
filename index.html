@@ -443,40 +443,40 @@
         <div class="form-card">
             
             <div class="form-group">
-                <label>1. Poin Usia Anda (Terhitung Otomatis):</label>
+                <label>1. Usia Anda :</label>
                 <select id="skor-usia" disabled style="background-color: #eee; font-weight: bold; color: #444;"></select>
             </div>
 
             <div class="form-group">
-                <label>2. Poin Jenis Kelamin Anda (Terhitung Otomatis):</label>
+                <label>2. Jenis Kelamin Anda :</label>
                 <select id="skor-gender" disabled style="background-color: #eee; font-weight: bold; color: #444;"></select>
             </div>
 
             <div class="form-group">
                 <label>3. Riwayat diabetes keluarga inti (ayah/ibu/saudara kandung)?</label>
                 <select class="skor-belum-kuesioner">
-                    <option value="0">Tidak (= 0)</option>
-                    <option value="1">Ya (= 1)</option>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label>4. Tekanan darah tinggi atau minum obat hipertensi?</label>
                 <select class="skor-belum-kuesioner">
-                    <option value="0">Tidak (= 0)</option>
-                    <option value="1">Ya (= 1)</option>
+                    <option value="0">Tidak </option>
+                    <option value="1">Ya </option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label>5. Aktivitas fisik rutin (30 menit/hari, 5x/minggu)?</label>
                 <select class="skor-belum-kuesioner">
-                    <option value="0">Ya (= 0)</option>
-                    <option value="1">Tidak (= 1)</option>
+                    <option value="0">Ya</option>
+                    <option value="1">Tidak</option>
                 </select>
             </div>
 
-            <div class="section-title">6. Panduan Berat Badan Berlebih</div>
+            <div class="section-title">6. Berat Badan (kg)</div>
             <div class="form-group">
                 <label for="tb">Tinggi Badan Anda (cm)</label>
                 <input type="number" id="tb" placeholder="Contoh: 160" oninput="hitungOtomatisBB()">
@@ -488,8 +488,8 @@
             <div class="form-group">
                 <label>Status Berat Badan Berlebih (Terhitung Otomatis):</label>
                 <select id="skor-bb-otomatis" disabled style="background-color: #eee; font-weight: bold; color: #444;">
-                    <option value="0">Tidak (= 0)</option>
-                    <option value="1">Ya (= 1)</option>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
                 </select>
             </div>
 
@@ -594,7 +594,7 @@
         totalSkor = 0;
         inputsBenar.forEach(input => totalSkor += parseInt(input.value));
 
-        if(totalSkor > 0) {
+        if(totalSkor >= 10) {
             kesimpulanSaran = "Ada indikasi komplikasi diabetes. Segera konsultasi ke Dokter Spesialis Penyakit Dalam untuk pemeriksaan lebih lanjut.";
         } else {
             kesimpulanSaran = "Tidak ada indikasi komplikasi klinis utama saat ini. Lanjutkan kontrol rutin berkala di Pelayanan Poliklinik/Rawat Jalan.";
