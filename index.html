@@ -371,7 +371,7 @@
             </div>
             <div class="form-group">
                 <label for="umur">Umur (Tahun)</label>
-                <input type="number" id="umur" placeholder="Contoh: 55">
+                <input type="number" id="umur" placeholder="Contoh: 55" min="1">
             </div>
             <div class="form-group">
                 <label for="gender">Jenis Kelamin</label>
@@ -479,11 +479,11 @@
             <div class="section-title">6. Berat Badan (kg)</div>
             <div class="form-group">
                 <label for="tb">Tinggi Badan Anda (cm)</label>
-                <input type="number" id="tb" placeholder="Contoh: 160" oninput="hitungOtomatisBB()">
+                <input type="number" id="tb" placeholder="Contoh: 160" min="1" oninput="hitungOtomatisBB()">
             </div>
             <div class="form-group">
                 <label for="bb">Berat Badan Anda (kg)</label>
-                <input type="number" id="bb" placeholder="Contoh: 65" oninput="hitungOtomatisBB()">
+                <input type="number" id="bb" placeholder="Contoh: 65" min="1" oninput="hitungOtomatisBB()">
             </div>
             <div class="form-group">
                 <label>Status Berat Badan Berlebih (Terhitung Otomatis):</label>
@@ -545,7 +545,7 @@
         const umur = parseInt(document.getElementById("umur").value.trim());
         const gender = document.getElementById("gender").value;
 
-        if(!nama || !umur || !gender) {
+        if(!nama || isNaN(umur) || !gender) {
             alert("Mohon lengkapi Data Informasi Pasien Anda terlebih dahulu.");
             return;
         }
@@ -589,10 +589,9 @@
     }
 
     function prosesAkhirSudah() {
-        let inputs = document.querySelectorAll(".skor-sudand"); 
-        let inputsBenar = document.querySelectorAll(".skor-sudah");
+        let inputs = document.querySelectorAll(".skor-sudah");
         totalSkor = 0;
-        inputsBenar.forEach(input => totalSkor += parseInt(input.value));
+        inputs.forEach(input => totalSkor += parseInt(input.value));
 
         if(totalSkor >= 10) {
             kesimpulanSaran = "Ada indikasi komplikasi diabetes. Segera konsultasi ke Dokter Spesialis Penyakit Dalam untuk pemeriksaan lebih lanjut.";
@@ -698,6 +697,17 @@
     function resetForm() {
         document.getElementById("nama").value = "";
         document.getElementById("umur").value = "";
+        document.getElementById("gender").value = "";
+        document.getElementById("kecamatan").value = "";
+        document.getElementById("kabupaten").value = "";
+        document.getElementById("provinsi").value = "";
+        document.getElementById("tb").value = "";
+        document.getElementById("bb").value = "";
+        
+        document.querySelectorAll(".skor-sudah").forEach(select => select.value = "0");
+        document.querySelectorAll(".skor-belum-kuesioner").forEach(select => select.value = "0");
+        document.getElementById("skor-bb-otomatis").value = "0";
+
         pindahHalaman("step-hasil", "step-1");
     }
 </script>
